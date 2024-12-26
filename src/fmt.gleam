@@ -12,3 +12,10 @@ pub fn replace(
     with: string.inspect(data),
   )
 }
+
+pub fn format(str: String, values: List(#(String, String))) {
+  case values {
+    [] -> str
+    [value, ..rest] -> str |> replace(value.0, value.1) |> format(rest)
+  }
+}
